@@ -1,0 +1,59 @@
+<html><body>
+<script>
+	var current = 0;
+	var today = new Date().toJSON().slice(0,10);
+	const MAX = 14;
+
+	function setToday() {
+		today = new Date().toJSON().slice(0,10);
+		
+		// refresh
+		current=0;
+		updateScreen();
+	}
+	function setYesterday() {
+		var dt = new Date();
+		dt.setDate(dt.getDate() - 1);
+		today = dt.toJSON().slice(0,10);
+		
+		//refresh
+		// refresh
+		current=0;
+		updateScreen();
+	}	
+	function next() {
+		current +=1;
+		if (current>MAX)
+			current = MAX;
+		updateScreen()
+	}
+	function prev() {
+		current -=1;
+		if (current<0)
+			current = 0;
+		updateScreen()
+	}
+	function updateScreen() {
+		document.getElementById("screen").src="http://www.isac.cnr.it/dinamica/projects/forecasts/moloch/output/"+today+"/prtt_"+parse3(current)+".png";
+	}
+	function parse3(x) {
+		if (x<10)
+			return "00"+x;
+		if (x<100)
+			return "0"+x;
+	}
+</script>
+<table><!-- border="1" cellpadding="3" cellspacing="0"> --> 
+	<tr>
+		<td align="center"><a href="javascript:setToday();">TODAY</a></td><td align="center"><a href="javascript:setYesterday();">YESTERDAY</a></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img alt="NO IMAGE" id="screen" src = "http://www.isac.cnr.it/dinamica/projects/forecasts/moloch/output/2019-11-08/prtt_000.png"/>
+		</td>
+	</tr>
+	<tr>
+		<td align="center"><a href="javascript:prev();">&lt; PREV</a></td><td align="center"><a href="javascript:next();">NEXT &gt;</a></td>
+	</tr>
+</table>
+</body></html>
