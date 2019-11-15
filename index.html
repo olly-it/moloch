@@ -1,4 +1,13 @@
-<html><body>
+<html>
+<head>
+<style>
+a {
+  color: blue;
+  text-decoration: none; /* no underline */
+}
+</style>
+</head>
+<body>
 <script>
 	var current = 0;
 	var today = new Date().toJSON().slice(0,10);
@@ -42,7 +51,7 @@
 			return "0"+x;
 	}
 </script>
-<table width="100%" border="1" cellpadding="3" cellspacing="0">
+<table width="100%"> <!-- border="1" cellpadding="3" cellspacing="0"> -->
 	<tr>
 		<td align="center"><a href="javascript:setToday();">TODAY</a></td><td align="center"><a href="javascript:setYesterday();">YESTERDAY</a></td>
 	</tr>
