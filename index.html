@@ -5,9 +5,29 @@ a {
   color: blue;
   text-decoration: none; /* no underline */
 }
+.bg {
+	background-color: white;
+}
 </style>
+<script>
+function init() {
+	var w = window.innerWidth;
+	var h = window.innerHeight;
+	if (h>w) {
+		// vertical
+		console.log("vertical");
+		document.getElementById("forecast").style="width:100%; height: auto";
+	
+	} else {
+		//horizontal
+		console.log("horizontal");
+		document.getElementById("forecast").style="height:100%; width: auto";
+	}
+	document.getElementById("forecast").src="http://www.newdesignfile.com/postpic/2016/05/thunderstorm-weather-icon_399285.png";
+}
+</script>
 </head>
-<body> <!--onLoad="rrr();">-->
+<body onLoad="init();">
 <script>
 	var current = 0;
 	var today = new Date().toJSON().slice(0,10);
@@ -50,37 +70,25 @@ a {
 		if (x<100)
 			return "0"+x;
 	}
-	/*function rrr() {
-		var w = window.innerWidth;
-		var h = window.innerHeight;
-		// document.getElementById("screen").width=w;
-		// document.getElementById("screen").height=h;
-		if (h>w) {
-			// vertical
-			console.log("vertical");
-			document.getElementById("screen").style.width="100%";
-		} else {
-			//horizontal
-			console.log("horizontal");
-			document.getElementById("screen").style.height="100%";
-		}
-	}*/
 </script>
-<table id="screen" width="100%"> <!--<style="max-height: 100%; max-width: 100%">-->
-	<tr>
-		<td align="center"><a href="javascript:setToday();">TODAY'S FORECAST</a></td>
-		<td align="center"><a href="javascript:setYesterday();">YESTERDAY'S FORECAST</a></td>
+<div style="position:fixed; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;">
+	<img align="middle" id="forecast" />
+</div>
+<div style="position:fixed; height: 100%; width: 100%; top:0;left 0;">
+<table width="100%" height="100%">
+	<tr style="height:1">
+		<td class="bg" align="center"><a href="javascript:setToday();">TODAY'S FORECAST</a></td>
+		<td class="bg" align="center"><a href="javascript:setYesterday();">YESTERDAY'S FORECAST</a></td>
 	</tr>
 	<tr>
-		<td colspan="2">
-			<img alt="NO IMAGE" id="forecast" width="100%"
-			     src="http://www.newdesignfile.com/postpic/2016/05/thunderstorm-weather-icon_399285.png"/>
-			     <!--style="max-height: 100%; max-width: 100%"/>-->
+		<td colspan="2" >&nbsp;
 		</td>
 	</tr>
-	<tr>
-		<td align="center"><a href="javascript:prev();">&lt; PREV</a></td>
-		<td align="center"><a href="javascript:next();">NEXT &gt;</a></td>
+	<tr style="height:1">
+		<td class="bg" align="center"><a href="javascript:prev();">&lt; PREV</a></td>
+		<td class="bg" align="center"><a href="javascript:next();">NEXT &gt;</a></td>
 	</tr>
 </table>
-</body></html>
+</div>
+</body>
+</html>
